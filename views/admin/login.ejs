@@ -1,0 +1,19 @@
+
+<%- include ('../partials/header.ejs'); %>
+<div class="container">
+  <div class="row align-items-center justify-content-center marca" >
+    <div class="col-md-4">
+        <h1 class="title_principal">AUTENTICAÇÃO</h1>
+        <form method="post" class="login" action="/login">
+            <label for="usuario">Usuario:</label>
+            <input class="form-control" name="usuario" id="usuario" type="text">
+    
+            <label for="senha">Senha:</label>
+            <input class="form-control" name="senha" id="senha" type="text">
+            <button class="btn btn-success mt-3">Entrar</button>
+        </form>
+        </div>
+    </div>
+</div>    
+
+<%- include ('../partials/footer.ejs'); %>

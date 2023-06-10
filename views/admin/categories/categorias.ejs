@@ -1,0 +1,43 @@
+<%- include ('../../partials/header.ejs'); %>
+<%- include ('../../partials/navbar.ejs'); %>
+<div class="container">
+    <a class="btn btn-primary mb-3" href="/admin/categories/new">Voltar</a>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table color">
+                <thead>
+                  <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Categorias</th>
+                    <th scope="col">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% categories.forEach(category =>{%>
+                  <tr>
+                    <td><%=category.id%></td>
+                    <td><%=category.title%></td>
+                    <td> 
+                      <a class="btn btn-warning" href="/categories/edit/<%=category.id%>"><i class="fa-solid fa-pen-to-square"></i></a>
+                      <form class="d-inline" method="post" action="/categories/delete" onsubmit="comfirmDelete(event, this)">
+                        <input type="hidden" value="<%=category.id%>" name="id">
+                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button> 
+                        </form> 
+                    </td>
+                  </tr>
+                  <%})%>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>    
+<script>
+  function comfirmDelete(event,form){
+      event.preventDefault();
+      let desicion = confirm(`Clique em 'ok' para apagar a categoria`);
+      if(desicion){
+          form.submit();
+      }
+  }
+</script>
+<%- include ('../../partials/footer.ejs'); %>

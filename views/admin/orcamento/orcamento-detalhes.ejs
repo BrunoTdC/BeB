@@ -1,0 +1,41 @@
+<%- include ('../../partials/header.ejs'); %>
+<%- include ('../../partials/navbar.ejs'); %>
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="title_principal">NOVO ORÇAMENTO</h1>     
+                </div>
+                <div class="card-body">
+                    <form action="/orcamento/save" method="post">
+                        <label for="descricao">Descrição</label>
+                        <textarea class="form-control" name="descricao" id="descricao" cols="30" rows="10"></textarea>
+                        <label for="quantidade">Quantidade</label>
+                        <input id="quantidade" name="quantidade" class="form-control" type="number">
+                        <label for="unitario">Valor Unitario</label>
+                        <input id="unitario" name="unitario" class="form-control" type="number" step="any">
+                        <button type="button" class="btn btn-danger mt-2 mb-2" onclick="calcular()">Calcular</button><br>
+                        <label for="total">Valor Total</label>
+                        <input id="total" name="total" class="form-control" type="number" step="any">
+                       <input type="hidden" name="orcamento" value="<%=orcamentosid.id%>" type="number">
+                       <input type="hidden" name="categories" value="<%=orcamentosid.categoryId%>">
+                        <button class="btn btn-success mt-3" type="submit">Criar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+<script>
+     function calcular(){
+        let quantidade = document.getElementById("quantidade").value
+        let unitario = document.getElementById("unitario").value
+
+        let mult = unitario*quantidade
+
+        document.getElementById("total").value = mult
+
+    }
+</script>
+<%- include ('../../partials/footer.ejs'); %>

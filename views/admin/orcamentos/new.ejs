@@ -1,0 +1,57 @@
+<%- include ('../../partials/header.ejs'); %>
+<%- include ('../../partials/navbar.ejs'); %>
+<div class="container">
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="title_principal">NOVO ORÇAMENTO</h1>     
+                </div>
+                <div class="card-body">
+                    <form action="/orcamentos/save" method="post">
+                        <label for="title">Código</label> <small class="ms-5 text-danger">Ultimo código usado: <%=orcamentos%></small>
+                        <input id="codigo" name="codigo" class="form-control" type="number">
+                        <label for="nome">Nome da Empresa</label>
+                        <input id="empresa" name="empresa" class="form-control" type="text">
+                        <label for="nome">Nome do Cliente</label>
+                        <input id="nome" name="nome" class="form-control" type="text">
+                        <label for="nome">Contato</label>
+                        <input id="phone-input" name="contato" class="form-control" type="text">
+                        <label for="Categoria">Categoria</label>
+                        <select class="form-control" name="category" id="category">
+                            <option value="">Selecione uma Categoria</option>
+                            <%categories.forEach(category=>{%>
+                                <option value="<%=category.id%>"><%=category.title%></option>
+                            <%})%>
+                            
+                        </select>
+                        <button class="btn btn-success mt-3" type="submit">Próxino</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+<script>
+    var phoneInput = document.getElementById('phone-input');
+  
+    phoneInput.addEventListener('input', function() {
+      var phone = phoneInput.value;
+      phone = phone.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+  
+      // Aplica a máscara
+      if (phone.length > 2) {
+        phone = '(' + phone.substring(0, 2) + ') ' + phone.substring(2);
+      }
+      if (phone.length > 6) {
+        phone = phone.substring(0, 6) + '.' + phone.substring(6);
+      }
+      if (phone.length > 11) {
+        phone = phone.substring(0, 11) + '-' + phone.substring(11);
+      }
+  
+      phoneInput.value = phone;
+    });
+  </script>
+<%- include ('../../partials/footer.ejs'); %>

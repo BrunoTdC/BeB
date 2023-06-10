@@ -1,0 +1,69 @@
+
+<%- include ('../../partials/header.ejs'); %>
+<%- include ('../../partials/navbar.ejs'); %>
+<div class="container">
+  <div class="row m-5">
+    <div class="col-md-12">
+      <form action="/orcamento/filter/codigo" method="post" class="d-flex" role="search">
+        <input name="codigo" class="form-control me-2" type="number" placeholder="Digite o Código do Orçamento" aria-label="Search">
+        <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+      <div class="dropdown mt-3">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Categorias
+        </button>
+        <ul class="dropdown-menu">
+          <%categories.forEach(category =>{%>
+            <li><a class="dropdown-item" href="/orcamento/filter/<%=category.id%>"><%=category.title%></a></li>
+          <%})%>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table color">
+                <thead>
+                  <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Valor Unt.</th>
+                    <th scope="col">Valor Total</th>
+                    <th scope="col">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% orcamento_detalhes.forEach(orcamento_detalhe =>{%>
+                  <tr>
+                    <td><%=orcamento_detalhe.orcamento.codigo%></td>
+                    <td><%=orcamento_detalhe.category.title%></td>
+                    <td><%=orcamento_detalhe.orcamento.nome%></td>
+                    <td><%=orcamento_detalhe.quantidade%></td>
+                    <td><%=orcamento_detalhe.valorunitario%></td>
+                    <td><%=orcamento_detalhe.valortotal%></td>
+                    <td> 
+                      <a class="btn btn-primary" href="/orcamento/print/<%=orcamento_detalhe.orcamento.codigo%>"><i class="fa-solid fa-circle-info"></i></a>
+                      <form class="d-inline" method="post" action="/orcamento/delete" onsubmit="comfirmDelete(event, this)">
+                        <input type="hidden" value="<%=orcamento_detalhe.id%>" name="orcamento_detalheId">
+                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button> 
+                        </form> 
+                    </td>
+                  </tr>
+                  <%})%>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>    
+<script>
+  function comfirmDelete(event,form){
+      event.preventDefault();
+      let desicion = confirm(`Clique em 'ok' para apagar a orçamento`);
+      if(desicion){
+          form.submit();
+      }
+  }
+</script>
+<%- include ('../../partials/footer.ejs'); %>

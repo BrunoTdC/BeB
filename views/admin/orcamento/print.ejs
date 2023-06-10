@@ -1,0 +1,58 @@
+<%- include ('../../partials/header.ejs'); %>
+<%- include ('../../partials/navbar2.ejs'); %>
+ <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text_secundario">Data Orçamento: <%=formatDate%></p>
+            <p class="text_secundario">Nº Orçamento: <%=orcamentos.codigo%></p>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-12 bg-light">
+            <p>Empresa: <%=orcamentos.empresa%></p>
+            <p>A/C: <%=orcamentos.nome%></p>
+            <p>Contato: <%=orcamentos.contato%></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table color bg-light text-dark ">
+                <thead>
+                  <tr>
+                    <th scope="col">Nº</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Valor Unitario</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% orcamento_detalhes.forEach(orcamento_detalhe =>{%>
+                  <%=cont = cont + 1%>
+                  <tr>
+                    <td><%=cont%></td>
+                    <td><%=orcamento_detalhe.decricao%></td>
+                    <td><%=orcamento_detalhe.quantidade%></td>
+                    <td><%=orcamento_detalhe.valorunitario%></td>
+                    <td>R$ <%=orcamento_detalhe.valortotal%></td>
+                  </tr>
+                  <%})%>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-12 txtcolor">
+          <h4>Observações:</h4>
+          <p>Validade da proposta: 15 dias <br>
+            Condição de pagamento: 28 dias mediante aprovação de cadastro - Frete Incluso para Cidade de São Paulo </p>
+          <h4>Arquivo</h4>
+          <p>Confira atentamente os dados de seu arquivo, como valores, endereços e data de validade. <br>
+            Seu arquivo é conferido e gerado uma prova virtual, apontando ou não problemas a serem corrigidos e o mesmo só entra em produção após a aprovação por e-mail. <br>
+            No aguardo e certos de que poderemos contar com a vossa devida confiança, colocamo-nos à disposição para maiores informações.
+            
+            </p>
+      </div>
+  </div>
+ </div>
+<%- include ('../../partials/footer.ejs'); %>

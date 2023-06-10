@@ -1,0 +1,47 @@
+body{
+    background-image: url('../IMG/fundos.jpg');
+    background-size: cover;
+    font-size: 20px;
+
+    font-family: 'Courier New', Courier, monospace;
+}
+.bg-dark{
+    background: rgba(255, 255, 255, 0) !important;
+}
+.title_principal{
+    color: orange;
+}
+.txtcolor{
+    color: white;
+    font-size: 12px;
+}
+.color{
+    color: white;
+    text-align: center;
+}
+.informacao-empresa{
+ color: white;
+ font-weight: 900;
+ font-size: 12px;
+}
+.text_secundario{
+    color: white;
+    font-weight: 900;
+    font-size: 14px;
+}
+.text-dark{
+    font-size: 14px;
+}
+.login{
+    width: 450px;
+    background-color: rgba(255, 255, 255, 0.74);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: start;
+
+}
+.marca{
+    /*border: 2px solid red;*/
+    height: 100vh;
+    text-align: center;
+}
